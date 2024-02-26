@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <!-- Include Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('./bg.png');
+            backdrop-filter: blur(10px);
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-black">
+    <!-- Header -->
+    <header class="bg-rose-500 text-black py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-3xl font-bold">LO <span class="text-white">G</span> O</h1>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="text-black hover:text-white">Home</a></li>
+                    <li><a href="#" class="text-black hover:text-white">About Us</a></li>
+                    <li><a href="#" class="text-black hover:text-white">FAQs</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="container mx-auto flex flex-col items-center justify-center h-screen">
+        <!-- Countdown section -->
+        <section class="bg-black text-rose-500 py-8 px-6 rounded-lg shadow-lg mb-8">
+            <h2 class="text-2xl font-bold mb-10 text-center text-white">We are Coming Soon!</h2>
+            <div id="countdown" class="flex space-x-4 text-white">
+                <!-- Countdown circles will be inserted here -->
+            </div>
+        </section>
+
+        <!-- VIP passcode input -->
+        <form class="flex flex-col items-center space-y-4">
+            <input type="password" placeholder="Enter VIP passcode"
+                class="bg-black placeholder-white-400 text-center border border-gray-300 rounded-lg py-3 px-4 w-64 focus:outline-none focus:ring-2 focus:ring-rose-500 transition duration-300 ease-in-out hover:border-rose-500 focus:border-rose-500">
+            <button type="submit"
+                class="bg-rose-500 text-white py-3 px-8 rounded-lg shadow-md hover:bg-rose-600 focus:outline-none focus:ring-2 focus:ring-rose-500 transition duration-300 ease-in-out">Submit</button>
+        </form>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-rose-500 py-4 text-center">
+        &copy; 2024 Modeling Agency. All rights reserved.
+    </footer>
+
+    <!-- JavaScript for countdown -->
+    <script>
+        // Calculate the time until the next month
+        const launchDate = new Date();
+        launchDate.setMonth(launchDate.getMonth() + 2);
+        launchDate.setDate(1); // Set the launch day to the 4th of the next month
+
+        // Function to update the countdown
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            // Calculate days, hours, minutes, and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the countdown
+            document.getElementById('countdown').innerHTML = `
+    <div class="flex flex-col items-center">
+        <div class="rounded-full bg-rose-500 w-20 h-20 flex justify-center items-center">
+            <span class="text-4xl font-bold">${days}</span>
+        </div>
+        <span class="text-xs text-white text-center">Days</span>
+    </div>
+    <div class="flex flex-col items-center">
+        <div class="rounded-full bg-rose-500 w-20 h-20 flex justify-center items-center">
+            <span class="text-4xl font-bold">${hours}</span>
+        </div>
+        <span class="text-xs white text-cente">Hours</span>
+    </div>
+    <div class="flex flex-col items-center">
+        <div class="rounded-full bg-rose-500 w-20 h-20 flex justify-center items-center">
+            <span class="text-4xl font-bold">${minutes}</span>
+        </div>
+        <span class="text-xs text-white text-cente">Minutes</span>
+    </div>
+    <div class="flex flex-col items-center">
+        <div class="rounded-full bg-rose-500 w-20 h-20 flex justify-center items-center">
+            <span class="text-4xl font-bold">${seconds}</span>
+        </div>
+        <span class="text-xs text-white text-cente">Seconds</span>
+    </div>
+`;
+
+        }
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+
+        // Initial update
+        updateCountdown();
+    </script>
+</body>
+
+</html>
